@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Utilisateur {
     int id ;
+    int key=5;
     String nom;
     String prenom;
     String password;
@@ -147,7 +148,29 @@ public class Utilisateur {
     
     
     
-    
+     public String encrypt (String text)
+    {
+        String altern="";
+        char[] chars= text.toCharArray();
+        for(char c: chars) {
+            c+=this.key;
+            altern+=c;
+        }
+        return altern;
+    }
+    public String decrypt (String text)
+    {
+                String altern="";
+
+       
+        char[] chars= text.toCharArray();
+        for(char c: chars) {
+            c-=this.key;
+            altern+=c;
+        }
+       
+        return altern;
+    }
     
     
     

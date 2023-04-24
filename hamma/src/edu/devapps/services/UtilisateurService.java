@@ -7,11 +7,13 @@ package edu.devapps.services;
 
 import com.mysql.jdbc.Connection;
 import edu.devapps.entity.Utilisateur;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import utilities.MaConnexion;
 
 /**
@@ -107,5 +109,149 @@ public class UtilisateurService {
        
 }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+           
+            
+               public int generer(int ID_UTILISATEUR) throws SQLException{
+        Random rand = new Random();
+        int code = rand.nextInt((9999 - 1000) + 1) + 1000;
+        
+        String req="UPDATE `utilisateur` SET `code`= ? WHERE id=?";
+            
+            PreparedStatement pst =cnx.prepareStatement(req);
+            pst.setInt(1,code);
+            pst.setInt(2,ID_UTILISATEUR);            
+            pst.executeUpdate();
+        return code;
+    }
+    public  List<Utilisateur>  login (String username,String password) throws SQLException
+    {
+      List<Utilisateur> users= new ArrayList<>();
+        Utilisateur c= new Utilisateur();
+        String req="SELECT * FROM utilisateur WHERE  username='"+username+"' and password='"+password+"'"; 
+               Statement st=cnx.createStatement();
+        ResultSet RS=st.executeQuery(req);
+        
+        while (RS.next()){
+            
+           
+            Utilisateur u = new Utilisateur();
+            u.setId(RS.getInt(1));
+            u.setNom(RS.getString(2));
+             u.setPrenom(u.decrypt(RS.getString(3)))   ;
+             u.setPassword(RS.getString(4));
+            u.setEmail(RS.getString(5));
+            u.setAdresse(RS.getString(6));
+            u.setRole(RS.getString(7));
+            u.setAge(RS.getDate(8));
+             u.setUsername(RS.getString(9));
+            u.setPhoto(RS.getString(10));
+            
+            u.setBloquer(RS.getInt(11));
+            u.setCode(RS.getInt(12));
+       // 
+       users.add(u);
+            
+        }
+        if (users.size()==0)
+            System.out.println("username or password incorrect");
+        return users;
+        
+    }
+    
+    
+      public  List<Utilisateur>  serchwithmail (String mail) throws SQLException
+    {
+      List<Utilisateur> users= new ArrayList<>();
+        Utilisateur c= new Utilisateur();
+        String req="SELECT id FROM utilisateur WHERE   email='"+mail+"';"; 
+               Statement st=cnx.createStatement();
+        ResultSet RS=st.executeQuery(req);
+        
+        while (RS.next()){
+            
+           
+            Utilisateur u = new Utilisateur();
+            u.setId(RS.getInt(1));
+           
+       //     u.setAge(RS.getInt(4));
+       users.add(u);
+            
+        }
+        if (users.size()==0)
+            System.out.println("username or password incorrect");
+        return users;
+        
+    }
+    
+      
+      
+    public List<Utilisateur>  resetpassword (String code,int id) throws SQLException
+    {
+              List<Utilisateur> users= new ArrayList<>();
+
+        String req="SELECT * FROM utilisateur WHERE code="+code+" AND id="+id;
+               Statement st=cnx.createStatement();
+        ResultSet RS=st.executeQuery(req);
+          while (RS.next()){
+            
+           
+              Utilisateur u = new Utilisateur();
+        
+            u.setId(RS.getInt(1));
+            u.setNom(RS.getString(2));
+             u.setPrenom(u.decrypt(RS.getString(3)))   ;
+             u.setPassword(RS.getString(4));
+            u.setEmail(RS.getString(5));
+            u.setAdresse(RS.getString(6));
+            u.setRole(RS.getString(7));
+            u.setAge(RS.getDate(8));
+             u.setUsername(RS.getString(9));
+            u.setPhoto(RS.getString(10));
+            
+            u.setBloquer(RS.getInt(11));
+            u.setCode(RS.getInt(12));
+       //     u.setAge(RS.getInt(4));
+       users.add(u);
+            
+        }
+          if(users.size()==0)
+          {
+              System.out.println("code incorrect");
+          }
+    
+       return  users;
+    }
+    public void enternewpassword (String password, int id) throws SQLException
+    {
+          
+        String req="UPDATE `utilisateur` SET `password`='"+password+"' WHERE id="+id+";";
+        Statement st=cnx.createStatement();
+        st.executeUpdate(req);
+        System.out.println("mot de passe a changer");
+    }
     
 }
