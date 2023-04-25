@@ -73,7 +73,7 @@ public class SignUpController implements Initializable {
            Date d= new Date(datepick1.getValue().getYear(), datepick1.getValue().getMonthValue(), datepick1.getValue().getDayOfMonth());
 
 
-        us.ajoutersponsor(new Utilisateur(1,firstname1.getText(),lastname1.getText(),u.encrypt(password1.getText()), email1.getText(), adresse1.getText(),"admin", d,username1.getText(), photouser.getText(),0,0));
+        us.ajouterutilisateur(new Utilisateur(1,firstname1.getText(),lastname1.getText(),u.encrypt(password1.getText()), email1.getText(), adresse1.getText(),"ROLE_USER", d,username1.getText(), photouser.getText(),0,0));
         
         
    FXMLLoader load = new FXMLLoader(getClass().getResource("SignIn.fxml"));
@@ -105,7 +105,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void uploadimge(ActionEvent event) {
-     FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("image", new String[]{"*.png"});
+     FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("image", new String[]{"*.jpg"});
         this.fileChooser.getExtensionFilters().add(fileExtensions);
         File file = this.fileChooser.showOpenDialog(new Stage());
         System.out.println(file.toURI().toString());

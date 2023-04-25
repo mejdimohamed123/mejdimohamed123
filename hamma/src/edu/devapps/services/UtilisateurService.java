@@ -29,7 +29,7 @@ public class UtilisateurService {
    
 
   
-    public void ajoutersponsor(Utilisateur r) {
+    public void ajouterutilisateur(Utilisateur r) {
         String req ="INSERT INTO `utilisateur`( `nom`, `prenom`, `password`,  `email`,  `adresse`,  `role`,  `age`,  `username`,  `photo`) VALUES"+ " ('"+r.getNom()+"','"+r.getPrenom()+"','"+r.getPassword()+"','"+r.getEmail()+"','"+r.getAdresse()+"','"+r.getRole()+"','"+r.getAge()+"','"+r.getUsername()+"','"+r.getPhoto()+"'"+")";
 
           try {

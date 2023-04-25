@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1023.0" styleClass="blue-panel" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xemacscode.ProfilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1023.0" styleClass="blue-panel" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xemacscode.ProfilController">
    <children>
       <Label layoutX="884.0" layoutY="34.0" prefHeight="30.0" prefWidth="105.0" text="sign out" textFill="#2196f3">
          <font>
@@ -20,7 +19,7 @@
       </Label>
       <ImageView fitHeight="171.0" fitWidth="196.0" layoutX="379.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@tfd.jpg" />
+            <Image url="@../../utilities/FB_IMG_1643576052938.jpg" />
          </image>
       </ImageView>
       <Label layoutX="203.0" layoutY="135.0" prefHeight="30.0" prefWidth="127.0" text="profil picture:" textFill="#2196f3">
