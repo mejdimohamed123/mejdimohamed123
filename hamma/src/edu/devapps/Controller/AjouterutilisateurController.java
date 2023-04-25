@@ -116,7 +116,7 @@ public class AjouterutilisateurController implements Initializable {
             {
                 
          
-            c.ajoutersponsor(new Utilisateur(1,nom.getText(), prenom.getText(), password.getText(), email.getText(),adresse.getText(),"ROLE_USER",d,username.getText(),photo.getText(),0,0));
+            c.ajoutersponsor(new Utilisateur(1,nom.getText(), prenom.getText(), password.getText(), email.getText(),adresse.getText(),"user",d,username.getText(),photo.getText(),0,0));
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "utilisateur ajouter avec  success");
                 a.show();
                             anchorme.setVisible(false);

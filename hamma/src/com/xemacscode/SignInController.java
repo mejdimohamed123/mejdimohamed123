@@ -66,6 +66,16 @@ public class SignInController implements Initializable {
         System.out.println( us.login(ue.encrypt(emmail.getText()) , password3.getText()));
         if ( us.login(emmail.getText(), ue.encrypt(password3.getText())).size()==1)
         {
+            
+            if ( us.login(emmail.getText(), ue.encrypt(password3.getText())).get(0).getBloquer()==1)
+            {
+                  Alert a =new Alert(Alert.AlertType.INFORMATION, "your account is banned");
+             a.show();
+            }
+            else
+            {
+                
+            
              Alert a =new Alert(Alert.AlertType.INFORMATION, "log in  avec success");
              a.show();
                  if ( us.login(emmail.getText(), ue.encrypt(password3.getText())).get(0).getRole().equals("admin"))
@@ -100,7 +110,7 @@ public class SignInController implements Initializable {
                      
                  }
                    
-        }
+        }}
         else
         {
               Alert a =new Alert(Alert.AlertType.ERROR, "username or password incorrect");

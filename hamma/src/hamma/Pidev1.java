@@ -7,6 +7,7 @@ package hamma;
 
 
 import com.mysql.jdbc.Connection;
+import edu.devapps.services.TwilloService;
 
 import java.sql.Date;
 
@@ -25,8 +26,6 @@ public class Pidev1 {
         // TODO code application logic here
         
       
-        Date d = new Date(1999, 10, 30);
-    
       
         
     }

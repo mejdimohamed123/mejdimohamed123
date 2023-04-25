@@ -58,7 +58,7 @@ public class UtilisateurService {
               Statement st = cnx.createStatement();
               ResultSet rs = st.executeQuery(req);
               while (rs.next()){
-                  utilisateurs.add(new Utilisateur(rs.getInt(1), rs.getString(2),rs.getString(3) ,rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10),0,0));
+                  utilisateurs.add(new Utilisateur(rs.getInt(1), rs.getString(2),rs.getString(3) ,rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10),rs.getInt(11),rs.getInt(12)));
               }
           } catch (SQLException ex) {
               }
@@ -88,24 +88,24 @@ public class UtilisateurService {
     
 
  
-    public void modifierutilisateur( Utilisateur r ) {
-        
-        String req=null;
-        if(r.getId()!=0)
-        {   
-            
-            req="UPDATE `utilisateur` SET nom='"+r.getNom()+"',prenom='"+r.getPrenom()+"',email='"+r.getEmail()+"',adresse='"+r.getAdresse()+"',username='"+r.getUsername()+"' where id ="+r.getId();
-       
-            try {
-             //insert
-             Statement st=cnx.createStatement();
-             st.executeUpdate(req);
-             System.out.println("utilisateur modifier avec succes");
-         } catch (SQLException ex) {
-             ex.printStackTrace();
-         }
-            
-        }
+public void modifierutilisateur( Utilisateur r ) {
+
+    String req=null;
+    if(r.getId()!=0)
+    {   
+
+        req="UPDATE `utilisateur` SET nom='"+r.getNom()+"',prenom='"+r.getPrenom()+"',email='"+r.getEmail()+"',adresse='"+r.getAdresse()+"',username='"+r.getUsername()+"' where id ="+r.getId();
+
+        try {
+         //insert
+         Statement st=cnx.createStatement();
+         st.executeUpdate(req);
+         System.out.println("utilisateur modifier avec succes");
+     } catch (SQLException ex) {
+         ex.printStackTrace();
+     }
+
+    }
        
 }
     
@@ -254,4 +254,75 @@ public class UtilisateurService {
         System.out.println("mot de passe a changer");
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+     public List<Utilisateur> rechercher(String s) {
+        //var
+        
+       
+        List<Utilisateur> utilisateurs =new ArrayList<>();
+        //requette
+        String req ="SELECT * FROM utilisateur  where id like '%"+s+"%' OR nom like  '%"+s+"%' OR prenom like '%"+s+"%' OR  email like '%"+s+"%' OR adresse like '%"+s+"%' OR username like '%"+s+"%'";
+          try {
+              Statement st = cnx.createStatement();
+              ResultSet rs = st.executeQuery(req);
+              while (rs.next()){
+                  utilisateurs.add(new Utilisateur(rs.getInt(1), rs.getString(2),rs.getString(3) ,rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getString(9), rs.getString(10),rs.getInt(11),rs.getInt(12)));
+              }
+          } catch (SQLException ex) {
+              }
+    
+        return utilisateurs;
+
+    
+       
+    }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+      
+public void banuser( Utilisateur r,int i ) {
+
+    String req=null;
+    if(r.getId()!=0)
+    {   
+
+        req="UPDATE `utilisateur` SET bloquer="+i+"  where id ="+r.getId();
+
+        try {
+         //insert
+         Statement st=cnx.createStatement();
+         st.executeUpdate(req);
+         System.out.println("utilisateur modifier avec succes");
+     } catch (SQLException ex) {
+         ex.printStackTrace();
+     }
+
+    }
+       
 }
+    
+}
+
+

@@ -25,7 +25,7 @@ public class Hamma extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
            Parent root = FXMLLoader.load(getClass().getResource("/edu/devapps/Interface/utilisateurview.fxml"));
-        primaryStage.setTitle("devapps");
+        primaryStage.setTitle("campyy");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

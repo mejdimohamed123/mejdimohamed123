@@ -8,6 +8,7 @@ package com.xemacscode;
 
 import edu.devapps.entity.Utilisateur;
 import  edu.devapps.services.UtilisateurService;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -22,6 +23,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -48,6 +51,10 @@ public class SignUpController implements Initializable {
     private VBox newvbox77;
     @FXML
     private TextField adresse1;
+    
+    FileChooser fileChooser = new FileChooser();
+    @FXML
+    private TextField photouser;
 
     /**
      * Initializes the controller class.
@@ -55,6 +62,7 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
@@ -65,7 +73,7 @@ public class SignUpController implements Initializable {
            Date d= new Date(datepick1.getValue().getYear(), datepick1.getValue().getMonthValue(), datepick1.getValue().getDayOfMonth());
 
 
-        us.ajoutersponsor(new Utilisateur(1,firstname1.getText(),lastname1.getText(),u.encrypt(password1.getText()), email1.getText(), adresse1.getText(),"admin", d,username1.getText(), email1.getText(),0,0));
+        us.ajoutersponsor(new Utilisateur(1,firstname1.getText(),lastname1.getText(),u.encrypt(password1.getText()), email1.getText(), adresse1.getText(),"admin", d,username1.getText(), photouser.getText(),0,0));
         
         
    FXMLLoader load = new FXMLLoader(getClass().getResource("SignIn.fxml"));
@@ -94,4 +102,22 @@ public class SignUpController implements Initializable {
         
         
                 }
+
+    @FXML
+    private void uploadimge(ActionEvent event) {
+     FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("image", new String[]{"*.png"});
+        this.fileChooser.getExtensionFilters().add(fileExtensions);
+        File file = this.fileChooser.showOpenDialog(new Stage());
+        System.out.println(file.toURI().toString());
+        this.photouser.setText(file.getName());
+    
+    }
 }
+
+
+
+
+
+
+
+
